@@ -20,7 +20,7 @@ import React, { useState } from 'react';
 const listOfSquareIds = ['sqA', 'sqB', 'sqC', 'sqD'];
 
 export default function Squares() {
-  const [ squares, setSquares ] = useState(listOfSquareIds);
+  const [ square, setSquare ] = useState(listOfSquareIds);
   const [ activeSquare, setActiveSquare ] = useState(null);
 
   // Use the state hook twice, as we need two slices of state: 'squares' and
@@ -30,15 +30,7 @@ export default function Squares() {
 
   const getClassName = id => {
 
-
-
-    return ` ${activeSquare === id} ? "${id}" : ${id}`;
-
-    // if ( activeSquare === id) {
-    //   setActiveSquare(null);
-    // } else {
-    //   setActiveSquare(id);
-    // }
+    return id === activeSquare ? "active" : "";
 
     // This is NOT a click handler but a helper, used inside the JSX (see below).
     // It should return a string containing the class name of 'active', if the id passed
@@ -48,10 +40,17 @@ export default function Squares() {
   };
 
   const markActive = id => {
+    
+    activeSquare ===  id ? setActiveSquare(null) : setActiveSquare(id);
 
-    setActiveSquare(id);
+    // if (activeSquare === id) {
+    //   setActiveSquare(null);
+    // } else {
+    //   setActiveSquare(id);
+    // }
 
     // This is a helper used inside an _inlined_ click handler (see below).
+
     // Set the id argument to become the active id in state
     // (unless it already is, in which case we should reset
     // the currently active square id back to initial state).
@@ -65,7 +64,7 @@ export default function Squares() {
           // Nasty bug! We should map over a slice of state, instead of 'listOfSquareIds'.
           // We might say: "it works, though!" But if the list of squares is not state,
           // we could never add squares, change squares or remove squares in the future. Fix!
-          listOfSquareIds.map(id =>
+          square.map(id =>
             <div
               id={id}
               key={id}

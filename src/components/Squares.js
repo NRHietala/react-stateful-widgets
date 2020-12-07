@@ -30,7 +30,16 @@ export default function Squares() {
 
   const getClassName = id => {
 
-    // return `${id !== null ? } is active!`;
+
+
+    return ` ${activeSquare === id} ? "${id}" : ${id}`;
+
+    // if ( activeSquare === id) {
+    //   setActiveSquare(null);
+    // } else {
+    //   setActiveSquare(id);
+    // }
+
     // This is NOT a click handler but a helper, used inside the JSX (see below).
     // It should return a string containing the class name of 'active', if the id passed
     // as the argument matches the active square in state, empty string otherwise.
@@ -39,6 +48,8 @@ export default function Squares() {
   };
 
   const markActive = id => {
+
+    setActiveSquare(id);
 
     // This is a helper used inside an _inlined_ click handler (see below).
     // Set the id argument to become the active id in state

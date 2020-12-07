@@ -30,7 +30,7 @@ export default function Squares() {
 
   const getClassName = id => {
 
-    return id === activeSquare ? "active" : "";
+    return id === activeSquare ? " active" : "";
 
     // This is NOT a click handler but a helper, used inside the JSX (see below).
     // It should return a string containing the class name of 'active', if the id passed
